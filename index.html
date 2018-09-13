@@ -1,0 +1,171 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Super Label Maker Pro</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700|PT+Sans:400,400i,700,700i" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css?v=1.0">
+
+</head>
+
+<body>
+  <header></header>
+
+  <main>
+    <div class="editor">
+      <div class="editor-section-trigger active">Product Details<span><i class="fa fa-caret-down"></i></span></div>
+      <div class="editor-section product active">
+        <div class="editor-product">
+          <div class="editor-product-field-single">
+            <div class="editor-product-field-caption">Product ID:</div>
+            <input name="id" class="editor-product-id">
+          </div>
+          
+          <div class="editor-product-field-single">
+            <div class="editor-product-field-caption">Serving Size</div>
+            <input name="serving-size" class="editor-product-serving-size"> 
+          </div>
+          
+          <div class="editor-product-field-single">
+            <div class="editor-product-field-caption">Serving Per Container</div>
+            <input name="serving-per-bottle" class="editor-product-serving-per">
+          </div>
+        </div>
+      </div>
+
+      <div class="editor-section-trigger">Daily Recommended Values<span><i class="fa fa-caret-down"></i></span></div>
+      <div class="editor-section recommended">
+        <div class="editor-recommended-fields">
+          <!--<h2>Daily Recommended Values:</h2>-->
+          <div class="editor-recommended-field-single">
+            <div class="editor-recommended-ingredient-caption">Ingredient Name:</div>
+            <div class="editor-recommended-amount-caption">Amount:</div>
+            <div class="editor-recommended-percent-caption">Percentage:</div>
+            <input name="ingredient" class="editor-recommended-ingredient">
+            <input name="amount" class="editor-recommended-amount">
+            <input name="daily-percent" class="editor-recommended-percent">
+          </div>
+        </div>
+        <div class="editor-recommended-add">Add Another Field</div>
+      </div>
+
+      <div class="editor-section-trigger">Daily Recommended Values Not Established<span><i class="fa fa-caret-down"></i></span></div>
+      <div class="editor-section cross">
+        <div class="editor-cross-fields">
+          <!--<h2>Daily Recommended Values Not Established:</h2>-->
+          <div class="editor-cross-field-single">
+            <div class="editor-cross-ingredient-caption">Ingredient Name:</div>
+            <div class="editor-cross-amount-caption">Amount:</div>
+            <input name="ingredient" class="editor-cross-ingredient">
+            <input name="amount" class="editor-cross-amount">
+          </div>
+        </div>
+        <div class="editor-cross-add">Add Another Field</div>
+      </div>
+
+      <div class="editor-section-trigger">Other Ingredients<span><i class="fa fa-caret-down"></i></span></div>
+      <div class="editor-section ingredients">
+        <div class="editor-ingredients">
+          <!--<h2>Other Ingredients:</h2>-->
+          <div class="editor-ingredients-field-single">
+            <textarea name="ingredients" class="editor-ingredients"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="label-preview">
+      <div class="label">
+        <div class="label-header">
+          <div class="label-title">Supplemental Facts</div>
+          <div class="label-serving-size">Serving Size <span></span></div>
+          <div class="label-serving-per">Serving Per Container <span></span></div>
+        </div>
+        <div class="label-recommended">
+          <div class="label-recommended-header">
+            Amount Per Serving <span>% Daily Amount</span>
+          </div>
+          <div class="label-recommended-field-single">
+            <div class="label-recommended-ingredient"></div>
+            <div class="label-recommended-amount"></div>
+            <div class="label-recommended-percent"></div>
+          </div>
+        </div>
+        <div class="label-cross">
+          <div class="label-cross-field-single">
+            <div class="label-cross-ingredient"><span class="label-cross-amount"></span></div>
+          </div>
+        </div>
+        <div class="label-ingredients">
+          <div class="label-ingredients-header">Other Ingredients:</div>
+          <div class="label-ingredients-content"></div>
+        </div>
+      </div>
+      <div class="label-settings">
+        <div class="label-settings-preview">Preview Label</div>
+        <div class="label-settings-save">Save Label</div>
+      </div>
+    </div>
+  </main>
+
+  <script class="label-template" type="x-tmpl-mustache">
+    <div class="label-header">
+      <div class="label-title">Supplemental Facts</div>
+      <div class="label-serving-size">Serving Size <span>{{serving-size}}</span></div>
+      <div class="label-serving-per">Serving Per Container <span>{{serving-per-bottle}}</span></div>
+    </div>
+    <div class="label-recommended">
+      <div class="label-recommended-header">
+        Amount Per Serving <span>% Daily Amount</span>
+      </div>
+      {{#recommendedFields}}
+      <div class="label-recommended-field-single">
+        <div class="label-recommended-ingredient">{{ingredient}}</div>
+        <div class="label-recommended-amount">{{amount}}</div>
+        <div class="label-recommended-percent">{{daily-percent}}</div>
+      </div>
+      {{/recommendedFields}}
+    </div>
+    <div class="label-cross">
+      {{#crossFields}}
+      <div class="label-cross-field-single">
+        <div class="label-cross-ingredient">{{ingredient}}<span class="label-cross-amount">{{amount}}</span></div>
+      </div>
+      {{/crossFields}}
+    </div>
+    <div class="label-ingredients">
+      <div class="label-ingredients-header">Other Ingredients:</div>
+      <div class="label-ingredients-content">{{ingredients}}</div>
+    </div>
+  </script>
+
+  <div id="templates" style="display:none;">
+      <div class="editor-cross-field-single cross-field-template">
+        <input name="ingredient" class="editor-cross-ingredient">
+        <input name="amount" class="editor-cross-amount">
+        <i class="fa fa-close"></i>
+      </div>
+    
+      <div class="editor-recommended-field-single recommended-field-template">
+        <input name="ingredient" class="editor-recommended-ingredient">
+        <input name="amount" class="editor-recommended-amount">
+        <input name="daily-percent" class="editor-recommended-percent">
+        <i class="fa fa-close"></i>
+      </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.2/mustache.min.js"></script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
