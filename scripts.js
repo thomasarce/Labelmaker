@@ -65,7 +65,7 @@ function EditorObject() {
 
     this.getFieldRowObject = function(fieldRow) {
         var returnObj = {};
-        $(fieldRow).children("input, textbox").each(function(index,item){
+        $(fieldRow).children("textarea, input").each(function(index,item){
             $.extend(returnObj,app.Editor.getFieldObject(item));
         });
 
@@ -170,7 +170,26 @@ function app() {
 
         //Save Trigger
         this.saveTrigger.on("click", function() {
-            console.log("Label Save");
+            $.ajax({
+                method: "POST",
+                url: "http://api.tomrc.co/product",
+                data: {
+                        Id: app.Label.currentLabel.id,
+                        Label: app.Label.currentLabel
+                      }
+              })
+                .done(function( msg ) {
+                  alert( "Data Saved" );
+                })
+                .fail(function( msg ) {
+                    $.ajax({
+                        method: "PUT",
+                        url: "http://api.tomrc.co/product/" + app.Label.currentLabel.id,
+                        data: {
+                            Label: app.Label.currentLabel
+                          }
+                      });
+                });
         });
 
         // Add More Fields To Editor
@@ -186,6 +205,14 @@ function app() {
         this.sectionTrigger.on("click", function() {
             app.Editor.triggerEditorSection(this);
         });
+        $(document).ready(function() {
+            $("[name='ingredient'], [name='ingredients']").summernote({
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                  ]
+            });
+        });
+        
     };
 }
 

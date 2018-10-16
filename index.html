@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
   <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow:700|PT+Sans:400,400i,700,700i" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.css" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=1.0">
 
 </head>
@@ -50,7 +51,7 @@
             <div class="editor-recommended-ingredient-caption">Ingredient Name:</div>
             <div class="editor-recommended-amount-caption">Amount:</div>
             <div class="editor-recommended-percent-caption">Percentage:</div>
-            <input name="ingredient" class="editor-recommended-ingredient">
+            <textarea name="ingredient" class="editor-recommended-ingredient"></textarea>
             <input name="amount" class="editor-recommended-amount">
             <input name="daily-percent" class="editor-recommended-percent">
           </div>
@@ -119,8 +120,8 @@
   <script class="label-template" type="x-tmpl-mustache">
     <div class="label-header">
       <div class="label-title">Supplemental Facts</div>
-      <div class="label-serving-size">Serving Size <span>{{serving-size}}</span></div>
-      <div class="label-serving-per">Serving Per Container <span>{{serving-per-bottle}}</span></div>
+      <div class="label-serving-size">Serving Size <span>{{{"serving-size}}}</span></div>
+      <div class="label-serving-per">Serving Per Container <span>{{{serving-per-bottle}}}</span></div>
     </div>
     <div class="label-recommended">
       <div class="label-recommended-header">
@@ -128,22 +129,22 @@
       </div>
       {{#recommendedFields}}
       <div class="label-recommended-field-single">
-        <div class="label-recommended-ingredient">{{ingredient}}</div>
-        <div class="label-recommended-amount">{{amount}}</div>
-        <div class="label-recommended-percent">{{daily-percent}}</div>
+        <div class="label-recommended-ingredient">{{{"ingredient"}}}</div>
+        <div class="label-recommended-amount">{{{"amount"}}}</div>
+        <div class="label-recommended-percent">{{{"daily-percent"}}}</div>
       </div>
       {{/recommendedFields}}
     </div>
     <div class="label-cross">
       {{#crossFields}}
       <div class="label-cross-field-single">
-        <div class="label-cross-ingredient">{{ingredient}}<span class="label-cross-amount">{{amount}}</span></div>
+        <div class="label-cross-ingredient">{{{ingredient}}}<span class="label-cross-amount">{{{amount}}}</span></div>
       </div>
       {{/crossFields}}
     </div>
     <div class="label-ingredients">
       <div class="label-ingredients-header">Other Ingredients:</div>
-      <div class="label-ingredients-content">{{ingredients}}</div>
+      <div class="label-ingredients-content">{{{ingredients}}}</div>
     </div>
   </script>
 
@@ -151,20 +152,21 @@
       <div class="editor-cross-field-single cross-field-template">
         <input name="ingredient" class="editor-cross-ingredient">
         <input name="amount" class="editor-cross-amount">
-        <i class="fa fa-close"></i>
+        <div class="editor-cross-field-single-remove">Remove Field</div>
       </div>
     
       <div class="editor-recommended-field-single recommended-field-template">
-        <input name="ingredient" class="editor-recommended-ingredient">
-        <input name="amount" class="editor-recommended-amount">
-        <input name="daily-percent" class="editor-recommended-percent">
-        <i class="fa fa-close"></i>
+        <textarea name="ingredient" class="editor-recommended-ingredient"></textarea>
+        <textarea name="amount" class="editor-recommended-amount"></textarea>
+        <textarea name="daily-percent" class="editor-recommended-percent"></textarea>
+        <div class="editor-recommended-field-single-remove">Remove Field</div>
       </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.2/mustache.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.2/mustache.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-lite.js"></script>
   <script src="scripts.js"></script>
 </body>
 

@@ -20,13 +20,21 @@ $padding: 0 0 12px;
     box-sizing: border-box;
 }
 
+i {
+    font-style: italic;
+}
+
+b {
+    font-weight: bold;
+}
+
 body {
     font-family: $font-body;
     font-size: 15px;
     line-height: 1.4;
 }
 main {
-    width: 1200px;
+    width: 1280px;
     padding: 48px 0;
     margin: auto;
     box-sizing: border-box;
@@ -50,6 +58,113 @@ textarea:focus {
     outline: none;
 }
 
+.editor {
+    @include clearfix();
+    width: 800px;
+
+    .editor-section-trigger {
+        padding: 8px 12px;
+        background: rgba(0,0,0,.24);
+        float:left;
+        width:100%;
+        box-sizing: border-box;
+    }
+
+    .editor-section {
+        @include clearfix();
+        width: 100%;
+        padding: 24px 12px;
+        box-sizing: border-box;
+        .editor-product-field-single {
+            float: left;
+            width: 33%;
+        }
+    }
+
+    .editor-recommended-fields {
+        .editor-recommended-field-single {
+            @include clearfix();
+            padding: 24px 0 24px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,.12);
+
+            .editor-recommended-ingredient-caption {
+                width:400px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .editor-recommended-amount-caption {
+                width:160px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .editor-recommended-percent-caption {
+                width:160px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .note-editor {
+                float: left;
+                width:380px;
+                margin-right:20px;
+            }
+
+            .editor-recommended-amount,
+            .editor-recommended-percent {
+                float:left;
+                width: 140px;
+                margin-right: 20px;
+            }
+        }
+    }
+
+    .editor-cross-fields {
+        .editor-cross-field-single {
+            @include clearfix();
+            padding: 24px 0 24px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,.12);
+
+            .editor-cross-ingredient-caption {
+                width:400px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .editor-cross-amount-caption {
+                width:160px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .editor-cross-percent-caption {
+                width:160px;
+                float: left;
+                padding-bottom: 8px;
+            }
+            .note-editor {
+                float: left;
+                width:380px;
+                margin-right:20px;
+            }
+
+            .editor-cross-amount,
+            .editor-cross-percent {
+                float:left;
+                width: 140px;
+                margin-right: 20px;
+            }
+        }
+    }
+
+    .editor-recommended-add {
+        padding:6px 12px;
+        background: rgba(0,0,0,.12);
+        display: block;
+        width:200px;
+    }
+    
+}
+
+/*
 //Label Editor
 .editor {
     width: 720px;
@@ -194,10 +309,13 @@ textarea:focus {
         border: 1px solid rgba(0,0,0,.24);
     }
 }
-
+*/
 //Label Preview
 
 .label-preview {
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 24px;
     width: 480px;
     position: fixed;
     top: 48px;
